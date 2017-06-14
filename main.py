@@ -4,6 +4,7 @@
 
 import check_duplication
 import save_excel
+import open_excel
 
 
 def main():
@@ -16,7 +17,8 @@ def main():
             break
 
         if check_duplication.check(message):
-            print "发票序号重复输入！"
+            print "发票序号重复输入！序号在第%d次前已输入" \
+                  % (len(open_excel.G_saved_numbers)-open_excel.G_saved_numbers.index(message)-1)
             return -1
 
         save_excel.save(message)
